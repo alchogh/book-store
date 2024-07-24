@@ -3,24 +3,34 @@ import Home from "./pages/Home";
 import ThemeSwitcher from "./components/header/ThemeSwitcher";
 import { BookStoreThemeProvider } from "./context/themeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Error from "./components/common/Error";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Home />,
+		element: (
+			<Layout>
+				{" "}
+				<Home />
+			</Layout>
+		),
+		errorElement: <Error />,
 	},
 	{
 		path: "/books",
-		element: <div>도서목록</div>,
+		element: (
+			<Layout>
+				<div>도서목록</div>
+			</Layout>
+		),
 	},
 ]);
 function App() {
 	return (
 		<BookStoreThemeProvider>
 			<ThemeSwitcher />
-			<Layout>
-				<RouterProvider router={router} />
-			</Layout>
+
+			<RouterProvider router={router} />
 		</BookStoreThemeProvider>
 	);
 }

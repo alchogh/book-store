@@ -1,26 +1,29 @@
 import logo from "../../asset/bookstore-logo.png";
 import { FaSignInAlt, FaRegUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 export default function Header() {
 	return (
 		<HeaderStyle>
 			<h1 className="logo">
-				<img src={logo} alt="logo" />
+				<Link to="/">
+					<img src={logo} alt="logo" />
+				</Link>
 			</h1>
 			<nav className="category">
 				<ul>
 					{CATEGORY.map((item) => (
 						<li key={item.id}>
-							<a
-								href={
+							<Link
+								to={
 									item.id === null
 										? "/books"
 										: `/books?category_id=${item.name}`
 								}
 							>
 								{item.name}
-							</a>
+							</Link>
 						</li>
 					))}
 				</ul>
@@ -28,16 +31,16 @@ export default function Header() {
 			<nav className="auth">
 				<ul>
 					<li>
-						<a href="/login">
+						<Link to="/login">
 							<FaSignInAlt />
 							로그인
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a href="/signup">
+						<Link to="/signup">
 							<FaRegUser />
 							회원가입
-						</a>
+						</Link>
 					</li>
 				</ul>
 			</nav>
