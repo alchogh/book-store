@@ -93,7 +93,7 @@ export const light: Theme = {
 		width: {
 			large: "1024px",
 			medium: "760px",
-			small: "32px",
+			small: "320px",
 		},
 	},
 };
