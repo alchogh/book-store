@@ -109,10 +109,3 @@ const HeaderStyle = styled.header`
     color: ${({ theme }) => theme.color.primary};
   }
 `;
-
-const CATEGORY = [
-  { id: null, name: "전체" },
-  { id: 0, name: "동화" },
-  { id: 1, name: "소설" },
-  { id: 2, name: "사회" },
-];
