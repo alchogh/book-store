@@ -9,7 +9,7 @@ export default function BooksFilter() {
 
 	const handleCategory = (id: number | null) => {
 		const newSearchParams = new URLSearchParams(searchParams);
-		console.log(newSearchParams);
+
 		if (id === null) {
 			newSearchParams.delete('category_id');
 		} else {
@@ -18,14 +18,14 @@ export default function BooksFilter() {
 		setSearchParams(newSearchParams);
 	};
 
-	const current_category = searchParams.get('category_id');
-
-	const selectedButton = (id: string | number) => {};
-
-	const onClick = () => {
+	const handleNews = () => {
 		const newSearchParams = new URLSearchParams(searchParams);
-		newSearchParams.get('as');
-		console.log(newSearchParams);
+		if (newSearchParams.get('news')) {
+			newSearchParams.delete('news');
+		} else {
+			newSearchParams.set('news', 'true');
+		}
+		setSearchParams(newSearchParams);
 	};
 
 	return (
@@ -34,11 +34,7 @@ export default function BooksFilter() {
 				{category.map((item) => (
 					<Button
 						size="medium"
-						scheme={
-							current_category === item.category_id?.toString()
-								? 'primary'
-								: 'normal'
-						}
+						scheme={item.isActive ? 'primary' : 'normal'}
 						key={item.category_id}
 						onClick={() => handleCategory(item.category_id)}
 					>
@@ -47,7 +43,11 @@ export default function BooksFilter() {
 				))}
 			</div>
 			<div className="new">
-				<Button size="medium" scheme="normal" onClick={onClick}>
+				<Button
+					size="medium"
+					scheme={searchParams.get('news') ? 'primary' : 'normal'}
+					onClick={handleNews}
+				>
 					신간
 				</Button>
 			</div>
