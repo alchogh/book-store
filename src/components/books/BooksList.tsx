@@ -33,4 +33,8 @@ export default function BooksList({ books }: Props) {
 	);
 }
 
-const BooksListStyle = styled.div``;
+const BooksListStyle = styled.div`
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 24px;
+`;

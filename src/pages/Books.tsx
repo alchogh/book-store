@@ -8,18 +8,21 @@ import { useBooks } from '../hooks/useBooks';
 import styled from 'styled-components';
 
 export default function Books() {
-	const { books, pagination } = useBooks();
-	console.log(books);
-	console.log(pagination);
+	const { books, pagination, isEmpty } = useBooks();
 	return (
 		<>
 			<Title size="large">도서 검색 결과</Title>
 			<BookStyle>
 				<BooksFilter />
 				<BooksViewSwitcher />
-				<BooksList books={books} />
-				<BooksEmpty />
-				<Pagination />
+				{!isEmpty ? (
+					<>
+						<BooksList books={books} />
+						<Pagination />
+					</>
+				) : (
+					<BooksEmpty />
+				)}
 			</BookStyle>
 			Books
 		</>
