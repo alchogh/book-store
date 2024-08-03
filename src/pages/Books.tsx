@@ -13,12 +13,14 @@ export default function Books() {
 		<>
 			<Title size="large">도서 검색 결과</Title>
 			<BookStyle>
-				<BooksFilter />
-				<BooksViewSwitcher />
+				<div className="filter">
+					<BooksFilter />
+					<BooksViewSwitcher />
+				</div>
 				{!isEmpty ? (
 					<>
 						<BooksList books={books} />
-						<Pagination />
+						<Pagination pagination={pagination} />
 					</>
 				) : (
 					<BooksEmpty />
@@ -29,4 +31,16 @@ export default function Books() {
 	);
 }
 
-const BookStyle = styled.div``;
+const BookStyle = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 24px;
+
+	.filter {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 20px 0;
+	}
+`;

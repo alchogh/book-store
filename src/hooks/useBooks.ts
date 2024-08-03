@@ -22,7 +22,9 @@ export const useBooks = () => {
 				? Number(params.get(QUERYSTRING.CATEGORY_ID))
 				: undefined,
 			news: params.get(QUERYSTRING.NEWS) ? true : undefined,
-			currentPage: params.get('page') ? Number(params.get('page')) : 1,
+			currentPage: params.get(QUERYSTRING.PAGE)
+				? Number(params.get(QUERYSTRING.PAGE))
+				: 1,
 			limit: LIMIT,
 		}).then(({ books, pagination }) => {
 			setBooks(books);
