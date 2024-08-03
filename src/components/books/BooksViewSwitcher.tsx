@@ -10,10 +10,12 @@ const viewOptions = [
 	{ value: 'grid', icon: <FaTh /> },
 ];
 
+export type ViewMode = 'grid' | 'list';
+
 export default function BooksViewSwitcher() {
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const handleSwitch = (value: string) => {
+	const handleSwitch = (value: ViewMode) => {
 		const newSearchParams = new URLSearchParams(searchParams);
 
 		newSearchParams.set(QUERYSTRING.VIEW, value);
@@ -37,7 +39,7 @@ export default function BooksViewSwitcher() {
 							: 'normal'
 					}
 					key={option.value}
-					onClick={() => handleSwitch(option.value)}
+					onClick={() => handleSwitch(option.value as ViewMode)}
 				>
 					{option.icon}
 				</Button>
