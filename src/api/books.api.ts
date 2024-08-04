@@ -37,3 +37,9 @@ export const fetchBook = async (bookId: string) => {
 		return response.data;
 	} catch (error) {}
 };
+
+export const likeBook = async (bookId: number) => {
+	const response = await httpClient.post(`/likes/${bookId}`);
+	console.log(2);
+	return response.data;
+};

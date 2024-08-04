@@ -8,6 +8,7 @@ import { BookDetail as IBookDetail } from '../models/book.model';
 import { formatDate, formatNumber } from '../utils/format';
 import { Link } from 'react-router-dom';
 import EllipsisBox from '../components/common/EllipsisBox';
+import LikeButton from '../components/book/LikeButton';
 const bookInfoList = [
 	{
 		label: '카테고리',
@@ -46,11 +47,10 @@ const bookInfoList = [
 
 export default function BookDetail() {
 	const { bookId } = useParams();
-	const { book } = useBook(bookId);
+	const { book, likeToggle } = useBook(bookId);
 
 	if (!book) return null;
 
-	console.log(book);
 	return (
 		<BookDetailStyle>
 			<header className="header">
@@ -63,7 +63,7 @@ export default function BookDetail() {
 					</Title>
 
 					{bookInfoList.map((item) => (
-						<dl>
+						<dl key={item.key}>
 							<dt>{item.label}</dt>
 							<dd>
 								{item.filter
@@ -74,7 +74,9 @@ export default function BookDetail() {
 					))}
 					<p className="summary">{book.summary}</p>
 
-					<div className="like">라이크</div>
+					<div className="like">
+						<LikeButton onClick={() => likeToggle()} book={book} />
+					</div>
 
 					<div className="add-cart">장바구니 넣기</div>
 				</div>
